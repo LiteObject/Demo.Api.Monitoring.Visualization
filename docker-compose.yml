@@ -1,0 +1,47 @@
+version: '3.4'
+
+services: 
+  demo.api.weather:
+    image: ${DOCKER_REGISTRY-}demoapimonitoringvisualization
+    container_name: demo-api-weather
+    build:
+      context: .
+      dockerfile: Demo.Weather.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=5003
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=SECRETPASSWORD
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:      
+      - 5004:80
+      - 5003:443
+    volumes:
+      - ~/.aspnet/https:/https:ro
+      #- ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      #- ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+        
+  prometheus:
+    image: ubuntu/prometheus
+    container_name: dev_prometheus    
+    ports:
+      - "30090:9090"
+    environment:
+      - TZ=UTC
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - demo.api.weather
+      
+  grafana:
+    image: grafana/grafana
+    container_name: dev_grafana  
+    environment:
+      - GF_SECURITY_ADMIN_USER="admin"
+      - GF_SECURITY_ADMIN_PASSWORD="password"
+    ports:
+      - "30091:3000"
+    volumes:
+      - ./grafana-data/data:/var/lib/grafana
+    depends_on:
+      - demo.api.weather
