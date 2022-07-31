@@ -1,3 +1,4 @@
+using Demo.Weather.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Weather.Api.Controllers
@@ -6,28 +7,34 @@ namespace Demo.Weather.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IWeatherService _weatherService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherService weatherService)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _weatherService = weatherService ?? throw new ArgumentNullException(nameof(weatherService));
+
+            _logger.LogInformation($"Instantiated {nameof(WeatherForecastController)} class.");
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IActionResult> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            _logger.LogInformation($"Invoked {nameof(WeatherForecastController)}.{nameof(Get)} method.");
+
+            var results = await _weatherService.GeForecastAsync();
+
+            _logger.LogDebug($"Result count: {results?.Length}");
+
+            if (results?.Length == 0)
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                return NotFound();
+            }
+
+            _logger.LogDebug($"Results:\n{System.Text.Json.JsonSerializer.Serialize(results)}\n");
+
+            return Ok(results);
         }
     }
 }

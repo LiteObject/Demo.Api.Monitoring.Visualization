@@ -1,4 +1,4 @@
-namespace Demo.Weather.Api
+namespace Demo.Weather.Backend.Api
 {
     public class WeatherForecast
     {

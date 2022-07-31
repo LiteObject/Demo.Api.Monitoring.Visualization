@@ -1,7 +1,6 @@
-using Demo.Weather.Api.Services;
 using Prometheus;
 
-namespace Demo.Weather.Api
+namespace Demo.Weather.Backend.Api
 {
     public class Program
     {
@@ -27,9 +26,6 @@ namespace Demo.Weather.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            builder.Services.AddHttpClient();
-            builder.Services.AddScoped<IWeatherService, WeatherService>();
 
             var app = builder.Build();
 
