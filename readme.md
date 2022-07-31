@@ -10,6 +10,14 @@ Grafana allows to visualize the data stored in Prometheus (and other sources).
 ## What is Zipkin?
 >Zipkin is a distributed tracing system. It helps gather timing data needed to troubleshoot latency problems in service architectures. Features include both the collection and lookup of this data.
 
+- How to setup Zipkin in .NET project
+  - Install the following packages
+    - `zipkin4net` (a tracer)
+    - `zipkin4net.middleware.aspnetcore` (the ASP.NET Core middleware)
+  - Register and start Zipkin
+
+   
+
 ## How to setup Prometheus
 
 ## How to setup Grafana?
@@ -21,4 +29,5 @@ Grafana allows to visualize the data stored in Prometheus (and other sources).
 ## External Links:
 - [Get started with Grafana and Prometheus](https://grafana.com/docs/grafana/latest/getting-started/get-started-grafana-prometheus/)
 - [OpenTelemetry for .NET](https://opentelemetry.io/docs/instrumentation/net/getting-started/)
-- - [More on Zipkin](https://zipkin.io/)
+- [More on Zipkin](https://zipkin.io/)
+- [docker-zipkin/docker-compose.yml](https://github.com/openzipkin-attic/docker-zipkin/blob/master/docker-compose.yml)

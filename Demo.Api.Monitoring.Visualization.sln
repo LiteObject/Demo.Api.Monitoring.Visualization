@@ -7,13 +7,16 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3FABA657-D2A5-4091-BDB1-C5085A96F7A9}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		prometheus.yml = prometheus.yml
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Weather.Api", "Demo.Weather.Api\Demo.Weather.Api.csproj", "{C2E6BA9E-D538-42BE-9B4E-1E2B321ED8CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Weather.Api", "Demo.Weather.Api\Demo.Weather.Api.csproj", "{C2E6BA9E-D538-42BE-9B4E-1E2B321ED8CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Weather.Backend.Api", "Demo.Weather.Backend.Api\Demo.Weather.Backend.Api.csproj", "{5E0BF8C7-EB99-4869-AD74-6125C82D2B5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Weather.Backend.Api", "Demo.Weather.Backend.Api\Demo.Weather.Backend.Api.csproj", "{5E0BF8C7-EB99-4869-AD74-6125C82D2B5E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.Weather.Shared", "Demo.Weather.Shared\Demo.Weather.Shared.csproj", "{523FFEE6-AF98-4166-A654-39AD47A6E110}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +36,10 @@ Global
 		{5E0BF8C7-EB99-4869-AD74-6125C82D2B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E0BF8C7-EB99-4869-AD74-6125C82D2B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0BF8C7-EB99-4869-AD74-6125C82D2B5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523FFEE6-AF98-4166-A654-39AD47A6E110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523FFEE6-AF98-4166-A654-39AD47A6E110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523FFEE6-AF98-4166-A654-39AD47A6E110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523FFEE6-AF98-4166-A654-39AD47A6E110}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

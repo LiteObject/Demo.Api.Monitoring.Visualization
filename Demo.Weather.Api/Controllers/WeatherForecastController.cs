@@ -25,14 +25,10 @@ namespace Demo.Weather.Api.Controllers
 
             var results = await _weatherService.GeForecastAsync();
 
-            _logger.LogDebug($"Result count: {results?.Length}");
-
             if (results?.Length == 0)
             {
                 return NotFound();
             }
-
-            _logger.LogDebug($"Results:\n{System.Text.Json.JsonSerializer.Serialize(results)}\n");
 
             return Ok(results);
         }
