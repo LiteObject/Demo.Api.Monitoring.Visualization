@@ -16,10 +16,6 @@ namespace Demo.Weather.Backend.Api
                 builder.AddSeq(config.GetSection("Seq"));
             });
 
-            var isInContainer = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") ?? "NOT SURE";
-
-            Console.WriteLine(">>> IsInContainer :" + isInContainer);
-
             // Add services to the container.
 
             builder.Services.AddControllers();

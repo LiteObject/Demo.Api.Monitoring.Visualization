@@ -26,6 +26,7 @@ namespace Demo.Weather.Api.Services
         {
             _logger.LogInformation($"Invoked {nameof(WeatherService)}.{nameof(GeForecastAsync)} method.");
 
+            // we could also use, "demo-api-weather-backend:80", for container-to-container communication within docker env.
             var requestUriString = "http://host.docker.internal:5006/WeatherForecast";
 
             var envRunningInContainer = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") ?? "false";
